@@ -1,0 +1,3 @@
+# Pascal's Triangle
+
+The task of implementing Pascal's Triangle is highly useful for reinforcing fundamental Python programming concepts such as lists, loops, conditional statements, and arithmetic operations. It also encourages problem-solving skills by translating a mathematical concept into code. This exercise helps to solidify understanding and application of Python basics in a practical context.
