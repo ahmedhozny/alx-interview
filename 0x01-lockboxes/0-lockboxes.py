@@ -17,7 +17,10 @@ def canUnlockAll(boxes):
     if not isinstance(boxes, list) or len(boxes) == 0:
         return False
     opened_boxes = [False] * len(boxes)
-    openBox(0, boxes, opened_boxes)
+    keys = openBox(0, boxes, opened_boxes)
+    for key in keys:
+        if key < len(boxes) and not opened_boxes[key]:
+            keys += openBox(key, boxes, opened_boxes)
     return all(opened_boxes)
 
 
@@ -30,9 +33,5 @@ def openBox(box_number, boxes, opened_boxes):
         boxes (list of lists): each sublist represents the keys found in a box.
         opened_boxes (list of bool): tracks opened boxes.
     """
-    if box_number >= len(boxes) or opened_boxes[box_number]:
-        return
-
     opened_boxes[box_number] = True
-    for key in boxes[box_number]:
-        openBox(key, boxes, opened_boxes)
+    return boxes[box_number]
