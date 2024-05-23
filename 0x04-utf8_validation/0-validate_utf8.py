@@ -3,6 +3,7 @@
 A module for validating UTF-8 encoding.
 """
 
+
 def validUTF8(data):
     """
     Determines if a given list of integers represents a valid UTF-8 encoding.
@@ -23,7 +24,7 @@ def validUTF8(data):
             if not check_continuity(byte):
                 return False
             next_span -= 1
-    return True
+    return next_span == 0
 
 
 def get_span(byte):
@@ -38,7 +39,8 @@ def get_span(byte):
         int: The number of remaining bytes in the UTF-8 character
         (0, 1, 2, or 3), or -1 if the byte is not a valid starting byte.
     """
-    if byte < 128:
+    byte &= 0b11111000
+    if 0 <= byte < 128:
         return 0
     if byte < 192:
         return -1
@@ -61,4 +63,4 @@ def check_continuity(byte):
     Returns:
         bool: True if the byte is a valid continuation byte, False otherwise.
     """
-    return 128 <= byte <= 192
+    return 128 <= byte < 192
