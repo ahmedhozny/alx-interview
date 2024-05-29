@@ -62,7 +62,7 @@ if __name__ == '__main__':
     if len(sys.argv) != 2:
         print("Usage: nqueens N")
         exit(1)
-    inp: int
+    inp = 0
     try:
         inp = int(sys.argv[1])
     except ValueError:
